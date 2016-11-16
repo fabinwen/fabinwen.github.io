@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>永无止境</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="好记性不如烂笔头">
+<meta property="og:type" content="website">
+<meta property="og:title" content="永无止境">
+<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:site_name" content="永无止境">
+<meta property="og:description" content="好记性不如烂笔头">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="永无止境">
+<meta name="twitter:description" content="好记性不如烂笔头">
+  
+    <link rel="alternate" href="/atom.xml" title="永无止境" type="application/atom+xml">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="/css/styles.css">
+  
+
+</head>
+
+<body>
+  <nav class="navbar navbar-inverse">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="main-menu-navbar">
+      <ul class="nav navbar-nav">
+        
+          <li><a class="active"
+                 href="/index.html">Home</a></li>
+        
+          <li><a class=""
+                 href="/archives/">Archives</a></li>
+        
+      </ul>
+
+      <!--
+      <ul class="nav navbar-nav navbar-right">
+        
+          <li><a href="/atom.xml" title="RSS Feed"><i class="fa fa-rss"></i></a></li>
+        
+      </ul>
+      -->
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+  <div class="container">
+    <div class="blog-header">
+  <h1 class="blog-title">永无止境</h1>
+  
+    <p class="lead blog-description">在海的尽头</p>
+  
+</div>
+
+    <div class="row">
+        <div class="col-sm-8 blog-main">
+          
+  
+    <article id="post-angular2-lazy-loading-with-angular-cli" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <header class="article-header">
+    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/26/angular2-lazy-loading-with-angular-cli/">使用angular-cli实现Angular2延迟加载模块</a>
+    </h1>
+  
+
+
+  </header>
+
+  <div class="article-meta">
+    <div class="article-datetime">
+  <a href="/2016/10/26/angular2-lazy-loading-with-angular-cli/" class="article-date"><time datetime="2016-10-26T10:42:26.000Z" itemprop="datePublished">2016-10-26</time></a>
+</div>
+
+    
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端开发/">前端开发</a>
+  </div>
+
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Welcome-to-MarkdownPad-2"><a href="#Welcome-to-MarkdownPad-2" class="headerlink" title="Welcome to MarkdownPad 2"></a>Welcome to MarkdownPad 2</h2><p>Angular2的延迟加载模块如何实现其实在其官方文档中已经有非常详尽的说明，但是官方教程中是基于SystemJS的，而我在使用angular-cli创建的Angular2工程中，按照官方教程实现延迟加载时，却没有成功。好在通过万能的网络，问题得以解决。</p>
+<p>先说明下的开发环境：</p>
+<ul>
+<li>Nodejs: v6.5.0</li>
+<li>NPM: 3.10.3</li>
+<li>Angular: 2.0</li>
+<li>angular-cli: v1.0.0-beta15</li>
+</ul>
+<p>实践的场景是这样的：在<strong>书籍详情组件</strong>中，通过命令导航到<strong>考试组件</strong>，考试组件(ExamComponent)所在的考试模块(ExamModule)被设计为延迟加载的模块(单纯为了学习使用Angular2的延迟加载，在实际项目中这样设计是否合理暂且不论)。</p>
+<p>按照官方教程的做法，一些代码片段大概是这这样的：</p>
+<figure class="highlight typescript"><figcaption><span>book-detail.component.ts</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//导航到考试组件的指令</span></div><div class="line">gotoExam(bookId:<span class="built_in">number</span>):<span class="built_in">void</span> &#123;</div><div class="line">  <span class="keyword">let</span> link = [<span class="string">'exam/book'</span>, bookId, &#123;name:<span class="keyword">this</span>.book.name&#125;];</div><div class="line">  <span class="keyword">this</span>.router.navigate(link);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight typescript"><figcaption><span>app-routing.module.ts</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">@NgModule(&#123;</div><div class="line">  imports: [</div><div class="line">    RouterModule.forRoot([</div><div class="line">      &#123;</div><div class="line">        path: <span class="string">''</span>,</div><div class="line">        redirectTo: <span class="string">'booklist'</span>,</div><div class="line">        pathMatch: <span class="string">'full'</span></div><div class="line">      &#125;,</div><div class="line">      &#123;</div><div class="line">        path:<span class="string">'exam'</span>,</div><div class="line">        loadChildren: <span class="string">'./exam/exam.module#ExamModule'</span></div><div class="line">      &#125;</div><div class="line">    ])</div><div class="line">  ],</div><div class="line">  exports: [RouterModule]</div><div class="line">&#125;)</div><div class="line"><span class="keyword">export</span> <span class="keyword">class</span> AppRoutingModule &#123;&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight typescript"><figcaption><span>exam-routing.module.ts</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">@NgModule(&#123;</div><div class="line">  imports: [</div><div class="line">    RouterModule.forChild([&#123;path: <span class="string">'book/:id'</span>, component: ExamComponent&#125;])</div><div class="line">  ],</div><div class="line">  exports: [RouterModule]</div><div class="line">&#125;)</div><div class="line"><span class="keyword">export</span> <span class="keyword">class</span> ExamRoutingModule &#123;&#125;</div></pre></td></tr></table></figure>
+<p>按照这样的做法，在尝试懒加载ExamModule时会出现无法找到exam/exam.module的异常。网上有人说这是因为angular-cli目前对这种形式的懒加载支持不够好，需要使用另一种方式。修改app-routing.module.ts中的代码如下：<br><figure class="highlight typescript"><figcaption><span>修改loadChildren app-routing.module.ts</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">&#123;</div><div class="line">  path:<span class="string">'exam'</span>,</div><div class="line">  loadChildren: () =&gt; <span class="built_in">require</span>(<span class="string">'es6-promise!./exam/exam.module'</span>)(<span class="string">'ExamModule'</span>)</div><div class="line">&#125;</div><div class="line">...</div></pre></td></tr></table></figure></p>
+<p>还需要安装es6-promise-loader(<code>npm install es6-promise-loader --save-dev</code>)，然后再重新运行<code>npm start</code>就能达到想要的效果了。</p>
+<p>这篇文章中也提到一种解决方案<a href="https://medium.com/@daviddentoom/angular-2-lazy-loading-with-webpack-d25fe71c29c1#.qazdotjgw" target="_blank" rel="external">angular-2-lazy-loading-with-webpack</a>，有兴趣的可以试试看。</p>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/10/26/angular2-lazy-loading-with-angular-cli/" data-id="civkmh31l0000ucmknyk83em1" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/angular2/">Angular2</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/angular-cli/">angular-cli</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+
+
+        </div>
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+          
+  <div class="sidebar-module sidebar-module-inset">
+  <h4>About</h4>
+  <p>好记性不如难笔头。</p>
+
+</div>
+
+
+  
+  <div class="sidebar-module">
+    <h4>Categories</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/前端开发/">前端开发</a><span class="sidebar-module-list-count">1</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Tags</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/angular2/">Angular2</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/angular-cli/">angular-cli</a><span class="sidebar-module-list-count">1</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Tag Cloud</h4>
+    <p class="tagcloud">
+      <a href="/tags/angular2/" style="font-size: 10px;">Angular2</a> <a href="/tags/angular-cli/" style="font-size: 10px;">angular-cli</a>
+    </p>
+  </div>
+
+
+  
+  <div class="sidebar-module">
+    <h4>Archives</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/10/">十月 2016</a><span class="sidebar-module-list-count">1</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Recents</h4>
+    <ul class="sidebar-module-list">
+      
+        <li>
+          <a href="/2016/10/26/angular2-lazy-loading-with-angular-cli/">使用angular-cli实现Angular2延迟加载模块</a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+
+        </div>
+    </div>
+  </div>
+  <footer class="blog-footer">
+  <div class="container">
+    <div id="footer-info" class="inner">
+      &copy; 2016 文发斌<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+  
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" integrity="sha384-8gBf6Y4YYq7Jx97PIqmTwLPin4hxIzQw5aDmUg/DDhul9fFpbbLcLh3nTIIDJKhx" crossorigin="anonymous"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+
+
+<script src="/js/script.js"></script>
+
+</body>
+</html>
