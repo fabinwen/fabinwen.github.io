@@ -3,17 +3,31 @@
 <head>
   <meta charset="utf-8">
   
-  <title>永无止境</title>
+  <title>Windows系统下安装NativeScript | 永无止境</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="好记性不如烂笔头">
-<meta property="og:type" content="website">
-<meta property="og:title" content="永无止境">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="近来打算使用Angular2 &amp;amp; NativeScript折腾点东西，原以为能很快完成开发环境的搭建，却不曾想在Windows下安装NativeScript CLI时便遇到了极大的挑战。
+目标目标是在Windows8上安装Angular2 &amp;amp; NativeScript的Android开发环境。以下是官方的系统需求：
+
+Windows 7 Service Pack 1 or late">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Windows系统下安装NativeScript">
+<meta property="og:url" content="http://yoursite.com/2016/11/21/install-nativescript-windows/index.html">
 <meta property="og:site_name" content="永无止境">
-<meta property="og:description" content="好记性不如烂笔头">
+<meta property="og:description" content="近来打算使用Angular2 &amp;amp; NativeScript折腾点东西，原以为能很快完成开发环境的搭建，却不曾想在Windows下安装NativeScript CLI时便遇到了极大的挑战。
+目标目标是在Windows8上安装Angular2 &amp;amp; NativeScript的Android开发环境。以下是官方的系统需求：
+
+Windows 7 Service Pack 1 or late">
+<meta property="og:image" content="http://yoursite.com/images/ns-install-error.png">
+<meta property="og:image" content="http://yoursite.com/images/tns-doctor.png">
+<meta property="og:image" content="http://yoursite.com/images/my-app-screenshot.png">
+<meta property="og:updated_time" content="2016-11-21T09:21:17.120Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="永无止境">
-<meta name="twitter:description" content="好记性不如烂笔头">
+<meta name="twitter:title" content="Windows系统下安装NativeScript">
+<meta name="twitter:description" content="近来打算使用Angular2 &amp;amp; NativeScript折腾点东西，原以为能很快完成开发环境的搭建，却不曾想在Windows下安装NativeScript CLI时便遇到了极大的挑战。
+目标目标是在Windows8上安装Angular2 &amp;amp; NativeScript的Android开发环境。以下是官方的系统需求：
+
+Windows 7 Service Pack 1 or late">
+<meta name="twitter:image" content="http://yoursite.com/images/ns-install-error.png">
   
     <link rel="alternate" href="/atom.xml" title="永无止境" type="application/atom+xml">
   
@@ -49,7 +63,7 @@
     <div class="collapse navbar-collapse" id="main-menu-navbar">
       <ul class="nav navbar-nav">
         
-          <li><a class="active"
+          <li><a class=""
                  href="/index.html">Home</a></li>
         
           <li><a class=""
@@ -78,15 +92,13 @@
 
     <div class="row">
         <div class="col-sm-8 blog-main">
-          
-  
-    <article id="post-install-nativescript-windows" class="article article-type-post" itemscope itemprop="blogPost">
+          <article id="post-install-nativescript-windows" class="article article-type-post" itemscope itemprop="blogPost">
 
   <header class="article-header">
     
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/11/21/install-nativescript-windows/">Windows系统下安装NativeScript</a>
+    <h1 class="article-title" itemprop="name">
+      Windows系统下安装NativeScript
     </h1>
   
 
@@ -164,83 +176,22 @@
     </footer>
   </div>
   
-</article>
-
-
-
-  
-    <article id="post-angular2-lazy-loading-with-angular-cli" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <header class="article-header">
     
+<ul id="article-nav" class="nav nav-pills nav-justified">
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/10/26/angular2-lazy-loading-with-angular-cli/">使用angular-cli实现Angular2延迟加载模块</a>
-    </h1>
+  <li role="presentation">
+    <a href="/2016/10/26/angular2-lazy-loading-with-angular-cli/" id="article-nav-older" class="article-nav-link-wrap">
+      <i class="fa fa-chevron-left pull-left"></i>
+      <span class="article-nav-link-title">使用angular-cli实现Angular2延迟加载模块</span>
+    </a>
+  </li>
   
-
-
-  </header>
-
-  <div class="article-meta">
-    <div class="article-datetime">
-  <a href="/2016/10/26/angular2-lazy-loading-with-angular-cli/" class="article-date"><time datetime="2016-10-26T10:42:26.000Z" itemprop="datePublished">2016-10-26</time></a>
-</div>
-
-    
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/前端开发/">前端开发</a>
-  </div>
-
-
-  </div>
-  <div class="article-inner">
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Angular2的延迟加载模块如何实现其实在其官方文档中已经有非常详尽的说明，但是官方教程中是基于SystemJS的，而我在使用angular-cli创建的Angular2工程中，按照官方教程实现延迟加载时，却没有成功。好在通过万能的网络，问题得以解决。</p>
-<p>先说明下的开发环境：</p>
-<ul>
-<li>Nodejs: v6.5.0</li>
-<li>NPM: 3.10.3</li>
-<li>Angular: 2.0</li>
-<li>angular-cli: v1.0.0-beta15</li>
+  
 </ul>
-<p>实践的场景是这样的：在<strong>书籍详情组件</strong>中，通过命令导航到<strong>考试组件</strong>，考试组件(ExamComponent)所在的考试模块(ExamModule)被设计为延迟加载的模块(单纯为了学习使用Angular2的延迟加载，在实际项目中这样设计是否合理暂且不论)。</p>
-<p>按照官方教程的做法，一些代码片段大概是这这样的：</p>
-<figure class="highlight typescript"><figcaption><span>book-detail.component.ts</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//导航到考试组件的指令</span></div><div class="line">gotoExam(bookId:<span class="built_in">number</span>):<span class="built_in">void</span> &#123;</div><div class="line">  <span class="keyword">let</span> link = [<span class="string">'exam/book'</span>, bookId, &#123;name:<span class="keyword">this</span>.book.name&#125;];</div><div class="line">  <span class="keyword">this</span>.router.navigate(link);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight typescript"><figcaption><span>app-routing.module.ts</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">@NgModule(&#123;</div><div class="line">  imports: [</div><div class="line">    RouterModule.forRoot([</div><div class="line">      &#123;</div><div class="line">        path: <span class="string">''</span>,</div><div class="line">        redirectTo: <span class="string">'booklist'</span>,</div><div class="line">        pathMatch: <span class="string">'full'</span></div><div class="line">      &#125;,</div><div class="line">      &#123;</div><div class="line">        path:<span class="string">'exam'</span>,</div><div class="line">        loadChildren: <span class="string">'./exam/exam.module#ExamModule'</span></div><div class="line">      &#125;</div><div class="line">    ])</div><div class="line">  ],</div><div class="line">  exports: [RouterModule]</div><div class="line">&#125;)</div><div class="line"><span class="keyword">export</span> <span class="keyword">class</span> AppRoutingModule &#123;&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight typescript"><figcaption><span>exam-routing.module.ts</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">@NgModule(&#123;</div><div class="line">  imports: [</div><div class="line">    RouterModule.forChild([&#123;path: <span class="string">'book/:id'</span>, component: ExamComponent&#125;])</div><div class="line">  ],</div><div class="line">  exports: [RouterModule]</div><div class="line">&#125;)</div><div class="line"><span class="keyword">export</span> <span class="keyword">class</span> ExamRoutingModule &#123;&#125;</div></pre></td></tr></table></figure>
-<p>按照这样的做法，在尝试懒加载ExamModule时会出现无法找到exam/exam.module的异常。网上有人说这是因为angular-cli目前对这种形式的懒加载支持不够好，需要使用另一种方式。修改app-routing.module.ts中的代码如下：<br><figure class="highlight typescript"><figcaption><span>修改loadChildren app-routing.module.ts</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">&#123;</div><div class="line">  path:<span class="string">'exam'</span>,</div><div class="line">  loadChildren: () =&gt; <span class="built_in">require</span>(<span class="string">'es6-promise!./exam/exam.module'</span>)(<span class="string">'ExamModule'</span>)</div><div class="line">&#125;</div><div class="line">...</div></pre></td></tr></table></figure></p>
-<p>还需要安装es6-promise-loader(<code>npm install es6-promise-loader --save-dev</code>)，然后再重新运行<code>npm start</code>就能达到想要的效果了。</p>
-<p>这篇文章中也提到一种解决方案<a href="https://medium.com/@daviddentoom/angular-2-lazy-loading-with-webpack-d25fe71c29c1#.qazdotjgw" target="_blank" rel="external">angular-2-lazy-loading-with-webpack</a>，有兴趣的可以试试看。</p>
-
-      
-    </div>
-
-    
-      
-
-    
-
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/10/26/angular2-lazy-loading-with-angular-cli/" data-id="civrv7ecd0000lomkx1qffb98" class="article-share-link">
-        <i class="fa fa-share"></i> Share
-      </a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/angular2/">Angular2</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/angular-cli/">angular-cli</a></li></ul>
 
 
-    </footer>
-  </div>
   
 </article>
-
-
-
-  
 
 
 
